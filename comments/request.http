@@ -1,0 +1,15 @@
+@host = http://localhost
+@port = 4001
+@baseUrl = {{host}}:{{port}}
+@contentType = application/json
+
+###
+GET {{baseUrl}}/posts/1/comments
+
+###
+POST {{baseUrl}}/posts/1/comments
+Content-Type: {{contentType}}
+
+{
+    "title": "My Post"
+}
