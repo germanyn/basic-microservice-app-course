@@ -15,8 +15,12 @@ app.get('/posts', (req, res) => {
 })
 
 app.post('/events', (req, res) => {
-    console.log()
-    const { type, data } = req.body
+    handleEvent(req.body)
+    res.send({})
+})
+
+async function handleEvent(event) {
+    const { type, data } = event
     switch (type) {
         case 'PostCreated': {
             const { id, title } = data
@@ -27,7 +31,7 @@ app.post('/events', (req, res) => {
             }
         } break
         case 'CommentCreated': {
-            const { id, content, postId } = data
+            const { id, content, postId, status } = data
             const post = posts[postId]
             posts[postId] = {
                 ...post,
@@ -36,17 +40,35 @@ app.post('/events', (req, res) => {
                     {
                         id,
                         content,
+                        status,
                     }
                 ]
 
             }
         } break
+        case 'CommentUpdated': {
+            const { id, content, postId, status } = data
+            const post = posts[postId]
+            const comment = post.comments
+                .find(comment => comment.id === id)
+            comment.content = content
+            comment.status = status
+        } break
     }
-    res.send({})
-})
+}
 
 const port = 4002
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`listening to http://localhost:${port}`)
+    try {
+        /** @type {{data: any[]}} */
+        const { data } = await axios.get('http://localhost:4005/events')
+        data.forEach(async event => {
+            console.log('Processing: ' + event.type)
+            await handleEvent(event)
+        })
+    } catch(error) {
+        console.log(error)
+    }
 })
