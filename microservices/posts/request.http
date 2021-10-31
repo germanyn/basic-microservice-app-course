@@ -1,5 +1,5 @@
-@host = http://localhost
-@port = 4000
+@host = http://192.168.49.2
+@port = 30282
 @baseUrl = {{host}}:{{port}}
 @contentType = application/json
 

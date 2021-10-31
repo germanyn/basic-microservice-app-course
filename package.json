@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "config": "kubectl apply -f infra/k8s/",
+        "update": "kubectl rollout restart"
+    },
+    "name": "blog",
+    "devDependencies": {
+        "lerna": "^4.0.0"
+    }
+}

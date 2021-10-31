@@ -1,19 +1,22 @@
 {
-  "name": "event-bus",
+  "name": "query",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "docker-push": "cross-env docker build -t germanyn/$npm_package_name . && docker push germanyn/$npm_package_name"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.23.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.14"
   }
 }

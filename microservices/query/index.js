@@ -63,7 +63,7 @@ app.listen(port, async () => {
     console.log(`listening to http://localhost:${port}`)
     try {
         /** @type {{data: any[]}} */
-        const { data } = await axios.get('http://localhost:4005/events')
+        const { data } = await axios.get('http://event-bus-srv:4005/events')
         data.forEach(async event => {
             console.log('Processing: ' + event.type)
             await handleEvent(event)
