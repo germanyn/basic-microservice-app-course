@@ -1,9 +1,5 @@
 const CommentList = ({ comments }) => {
 
-    const commentItem = (comment) => {
-        
-    }
-
     return (
         <div>
             <i>Comments {comments.length}</i>

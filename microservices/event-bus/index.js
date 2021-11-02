@@ -14,9 +14,9 @@ app.post('/events', (req, res) => {
 
     const services = [
         'http://posts-srv:4000/events',
-        // 'http://localhost:4001/events',
-        // 'http://localhost:4002/events',
-        // 'http://localhost:4003/events',
+        'http://comments-srv:4001/events',
+        'http://query-srv:4002/events',
+        'http://moderation-srv:4003/events',
     ]
     services.forEach(service => {
         axios.post(service, event)

@@ -10,7 +10,7 @@ app.use(cors())
 
 const posts = {}
 
-app.get('/posts', (req, res) => {
+app.get('/posts-query', (req, res) => {
     res.send(posts)
 })
 
